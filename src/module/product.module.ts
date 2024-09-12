@@ -7,8 +7,8 @@ import { ProductController } from '@controller/product.controller';
 import { ProductService } from '@service/product.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import ormConfigDev from '@config/orm-dev.config';
-import ormConfigProd from '@config/orm-prod.config';
+import ormConfigDev from '@config/db-dev.config';
+import ormConfigProd from '@config/db-prod.config';
 import { ProductModel } from '@interface/product.model';
 
 @Module({

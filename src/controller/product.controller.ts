@@ -11,8 +11,11 @@ import {
   ParseIntPipe,
   Post,
   Patch,
+  Put,
   UseFilters,
   Query,
+  UseInterceptors,
+  UploadedFiles,
 } from '@nestjs/common';
 
 import {
@@ -26,6 +29,7 @@ import {
 import { HttpExceptionFilter } from '@http-filter/http-exception.filter';
 import { ProductService } from '@service/product.service';
 import { ProductModel, UpdateProductModel } from '@interface/all.model';
+import { FilesInterceptor } from '@nestjs/platform-express';
 
 @Controller('product')
 @ApiTags('product')
@@ -36,10 +40,11 @@ export class ProductController {
   @Get()
   @ApiOkResponse({ description: 'Product listed successfully.' })
   public findAll(
-    @Query('page', ParseIntPipe) page: number,
-    @Query('limit', ParseIntPipe) limit: number,
+    @Query('search') search,
+    @Query('page') page,
+    @Query('limit') limit,
   ) {
-    return this.productService.findAll(page, limit);
+    return this.productService.findAll(search, page, limit);
   }
 
   // Example #1 - Value
@@ -71,7 +76,15 @@ export class ProductController {
   @Delete(':id')
   @ApiOkResponse({ description: 'Product deleted successfully.' })
   @ApiNotFoundResponse({ description: 'Product not found.' })
-  public remove(@Param('id', ParseIntPipe) id: number) {
+  public delete(@Param('id', ParseIntPipe) id: number) {
     return this.productService.delete(id);
+  }
+
+  @Put()
+  @ApiOkResponse({ description: 'Image upload successfully.' })
+  @ApiNotFoundResponse({ description: 'Image not found.' })
+  @UseInterceptors(FilesInterceptor('files'))
+  public upload(@UploadedFiles() files) {
+    return this.productService.upload(files);
   }
 }

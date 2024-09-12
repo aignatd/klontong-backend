@@ -4,7 +4,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity('product')
 export class ProductModel {
   @ApiPropertyOptional({ type: Number })
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id?: number;
   @ApiProperty({ type: Number })
   @Column()

@@ -21,24 +21,7 @@ export class ProductService {
     this.logger.log(`Returning all product or limit result`);
 
     var allProduct = null;
-    /*    var repoOptions: FindManyOptions<ProductModel>;
-    repoOptions.order = { id: 'ASC', };
 
-    if (page && limit && page > 0 && limit > 0) {
-      repoOptions.skip = (page - 1) * limit;
-      repoOptions.take = limit;
-    }
-    else
-    if (search && search != '')
-      repoOptions.where = [
-        { categoryName: Like(`%${search}%`) },
-        { sku: Like(`%${search}%`) },
-        { name: Like(`%${search}%`) },
-        { description: Like(`%${search}%`) },
-      ];
-
-    allProducts = await this.repoProduct.find(repoOptions);
-*/
     if (JSON.stringify(page) == '{}') page = 0;
     if (JSON.stringify(limit) == '{}') limit = 0;
     if (JSON.stringify(search) == '{}' || search == null || search == undefined)
@@ -89,7 +72,7 @@ export class ProductService {
 
     return {
       code: 0,
-      message: 'Success list product',
+      message: 'Product list success',
       timestamp: new Date().toISOString(),
       data: allProduct,
     };
@@ -105,7 +88,7 @@ export class ProductService {
 
     return {
       code: 0,
-      message: 'Success get product',
+      message: 'Get product success',
       timestamp: new Date().toISOString(),
       data: dataProduct,
     };
@@ -120,7 +103,7 @@ export class ProductService {
 
     return {
       code: 0,
-      message: 'Success new product',
+      message: 'Add new product success',
       timestamp: new Date().toISOString(),
       data: newProduct,
     };
@@ -142,7 +125,7 @@ export class ProductService {
 
     return {
       code: 0,
-      message: 'Success update product',
+      message: 'Update product success',
       timestamp: new Date().toISOString(),
       data: updateProduct,
     };
@@ -160,7 +143,7 @@ export class ProductService {
     await this.repoProduct.remove(dataProduct);
     return {
       code: 0,
-      message: 'Success delete product',
+      message: 'Delete product success',
       timestamp: new Date().toISOString(),
       data: dataProduct,
     };

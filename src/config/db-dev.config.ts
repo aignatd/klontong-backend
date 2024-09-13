@@ -1,5 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { CheckoutModel } from '@interface/checkout.model';
 import { ProductModel } from '@interface/product.model';
 
 export default registerAs(
@@ -11,7 +12,7 @@ export default registerAs(
     username: process.env.POSTGRESUSER,
     password: process.env.POSTGRESPASS,
     database: 'klontong',
-    entities: [ProductModel],
+    entities: [ProductModel, CheckoutModel],
     synchronize: true,
   }),
 );

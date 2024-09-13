@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION "public"."deleterow"()
+  RETURNS "pg_catalog"."trigger" AS $BODY$
+BEGIN
+  INSERT INTO product_delete("id", "CategoryId", "categoryName", "sku", "name", "description", "weight", "width", "length", "height", "image", "price") VALUES(OLD."id", OLD."CategoryId", OLD."categoryName", OLD."sku", OLD."name", OLD."description", OLD."weight", OLD."width", OLD."length", OLD."height", OLD."image", OLD."price");
+  
+  RETURN OLD;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 10

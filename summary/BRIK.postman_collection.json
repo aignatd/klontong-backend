@@ -1,0 +1,954 @@
+{
+	"info": {
+		"_postman_id": "8998ea43-cbc9-4cff-82a5-6789c731d213",
+		"name": "BRIK",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "741147",
+		"_collection_link": "https://kunyil.postman.co/workspace/Artolanggeng-Solusi-Inovasi~21bf15f1-a8ee-44a6-ac4f-5e1de88faaf2/collection/741147-8998ea43-cbc9-4cff-82a5-6789c731d213?action=share&source=collection_link&creator=741147"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Limit Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method GET\r",
+									"pm.test(\"HTTP method is GET\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"GET\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search all data\r",
+									"pm.test(\"Path for search all data (/product)\", function () {\r",
+									"    pm.expect(pm.request.url.path.join().replace(/,/g, \"/\")).to.equal(\"api/v1/product\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search data with range\r",
+									"pm.test(\"Path for search data with range\", function () {\r",
+									"    var query = pm.request.url.query == 0 ? \"empty\" : pm.request.url.query.toString();\r",
+									"    pm.expect(query).not.to.equal(\"empty\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is search\r",
+									"pm.test(\"Query search at parameter is exist\", function () {\r",
+									"    pm.expect(pm.request.url.query.toObject(true)).haveOwnProperty(\"search\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is page\r",
+									"pm.test(\"Query page at parameter is exist\", function () {\r",
+									"    pm.expect(pm.request.url.query.toObject(true)).haveOwnProperty(\"page\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is limit\r",
+									"pm.test(\"Query limit at parameter is exist\", function () {\r",
+									"    pm.expect(pm.request.url.query.toObject(true)).haveOwnProperty(\"limit\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is page\r",
+									"pm.test(\"Query page at parameter is number and above 0\", function () {\r",
+									"    const page = pm.request.url ? pm.request.url.query.toObject(true).page : \"empty\"\r",
+									"    pm.expect(Number(page)).to.be.above(0);\r",
+									"    pm.expect(Number(page)).to.be.a('number');\r",
+									"    pm.expect(page).not.to.equal(\"empty\");\r",
+									"    pm.expect(page).not.to.equal(undefined);\r",
+									"    pm.expect(page).not.to.equal(\"\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is limit\r",
+									"pm.test(\"Query limit at parameter is number and above 0\", function () {\r",
+									"    const limit = pm.request.url ? pm.request.url.query.toObject(true).limit : \"empty\"\r",
+									"    pm.expect(Number(limit)).to.be.above(0);\r",
+									"    pm.expect(Number(limit)).to.be.a('number');\r",
+									"    pm.expect(limit).not.to.equal(\"empty\");\r",
+									"    pm.expect(limit).not.to.equal(undefined);\r",
+									"    pm.expect(limit).not.to.equal(\"\");\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31013/api/v1/product?page=1&limit=10&search=EA-EA-7661-J",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "search",
+									"value": "EA-EA-7661-J"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method GET\r",
+									"pm.test(\"HTTP method is GET\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"GET\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search all data\r",
+									"pm.test(\"Path for search all data (/product)\", function () {\r",
+									"    pm.expect(pm.request.url.path.join().replace(/,/g, \"/\")).to.equal(\"api/v1/product\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31013/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method GET\r",
+									"pm.test(\"HTTP method is GET\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"GET\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search data\r",
+									"pm.test(\"Path for search data (/product)\", function () {\r",
+									"    pm.expect(pm.request.url.path[2]).to.equal(\"product\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter is product id\r",
+									"pm.test(\"Parameter product id is number and above 0\", function () {\r",
+									"    const id = pm.request.url ? pm.request.url.path[3] : \"empty\"\r",
+									"    pm.expect(Number(id)).to.be.above(0);\r",
+									"    pm.expect(Number(id)).to.be.a('number');\r",
+									"    pm.expect(id).not.to.equal(\"empty\");\r",
+									"    pm.expect(id).not.to.equal(undefined);\r",
+									"    pm.expect(id).not.to.equal(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31013/api/v1/product/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method DELETE\r",
+									"pm.test(\"HTTP method is DELETE\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"DELETE\");\r",
+									"});\r",
+									"\r",
+									"// Check path for delete product\r",
+									"pm.test(\"Path for delete product (/product)\", function () {\r",
+									"    pm.expect(pm.request.url.path[2]).to.equal(\"product\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter is product id\r",
+									"pm.test(\"Parameter product id is number and above 0\", function () {\r",
+									"    const id = pm.request.url ? pm.request.url.path[3] : \"empty\"\r",
+									"    pm.expect(Number(id)).to.be.above(0);\r",
+									"    pm.expect(Number(id)).to.be.a('number');\r",
+									"    pm.expect(id).not.to.equal(\"empty\");\r",
+									"    pm.expect(id).not.to.equal(undefined);\r",
+									"    pm.expect(id).not.to.equal(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31013/api/v1/product/148",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"148"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method POST\r",
+									"pm.test(\"HTTP method is POST\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"POST\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search data\r",
+									"pm.test(\"Path for search data (/product)\", function () {\r",
+									"    pm.expect(pm.request.url.path[2]).to.equal(\"product\");\r",
+									"});\r",
+									"\r",
+									"// Check body data not empty and must exist\r",
+									"pm.test(\"Body data is a must\", function () {\r",
+									"\tconst body = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(body).not.to.equal(\"empty\");\r",
+									"    pm.expect(body).not.to.equal(undefined);\r",
+									"    pm.expect(body).not.to.equal(\"\");\r",
+									"});\r",
+									"\r",
+									"// Check name key at the body\r",
+									"pm.test(\"Name key at the body is a must\", function () {\r",
+									"\tconst title = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(title).haveOwnProperty(\"name\");\r",
+									"});\r",
+									"\r",
+									"// Check name value at the body\r",
+									"pm.test(\"Name at the body not empty and must a string type\", function () {\r",
+									"\tconst title = pm.request.body ? JSON.parse(pm.request.body.raw).name : \"empty\";\r",
+									"    pm.expect(title).not.to.equal(\"empty\");\r",
+									"    pm.expect(title).not.to.equal(undefined);\r",
+									"    pm.expect(title).not.to.equal(\"\");\r",
+									"    pm.expect(title).to.be.a('string');\r",
+									" });\r",
+									"\r",
+									"// Check sku key at the body\r",
+									"pm.test(\"SKU key at the body is a must\", function () {\r",
+									"\tconst author = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(author).haveOwnProperty(\"sku\");\r",
+									"});\r",
+									"\r",
+									"// Check sku value at the body\r",
+									"pm.test(\"SKU at the body not empty and must a string type\", function () {\r",
+									"\tconst author = pm.request.body ? JSON.parse(pm.request.body.raw).sku : \"empty\";\r",
+									"    pm.expect(author).not.to.equal(\"empty\");\r",
+									"    pm.expect(author).not.to.equal(undefined);\r",
+									"    pm.expect(author).not.to.equal(\"\");\r",
+									"    pm.expect(author).to.be.a('string');\r",
+									" });\r",
+									"\r",
+									"// Check CategoryId key at the body\r",
+									"pm.test(\"CategoryId key at the body is a must\", function () {\r",
+									"\tconst publishedYear = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(publishedYear).haveOwnProperty(\"CategoryId\");\r",
+									"});\r",
+									"\r",
+									"// Check CategoryId value at the body\r",
+									"pm.test(\"CategoryId at the body not empty and must a number type\", function () {\r",
+									"\tconst publishedYear = pm.request.body ? JSON.parse(pm.request.body.raw).CategoryId : \"empty\";\r",
+									"    pm.expect(publishedYear).not.to.equal(\"empty\");\r",
+									"    pm.expect(publishedYear).not.to.equal(undefined);\r",
+									"    pm.expect(publishedYear).not.to.equal(\"\");\r",
+									"    pm.expect(publishedYear).to.be.a('number');\r",
+									" });\r",
+									"\r",
+									"// Check price key at the body\r",
+									"pm.test(\"Price key at the body is a must\", function () {\r",
+									"\tconst stock = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(stock).haveOwnProperty(\"price\");\r",
+									"});\r",
+									"\r",
+									"// Check price value at the body\r",
+									"pm.test(\"Price at the body not empty and must a number type\", function () {\r",
+									"\tconst stock = pm.request.body ? JSON.parse(pm.request.body.raw).price : \"empty\";\r",
+									"    pm.expect(stock).not.to.equal(\"empty\");\r",
+									"    pm.expect(stock).not.to.equal(undefined);\r",
+									"    pm.expect(stock).not.to.equal(\"\");\r",
+									"    pm.expect(stock).to.be.a('number');\r",
+									" });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"CategoryId\": 14,\r\n    \"categoryName\": \"Cemilan\",\r\n    \"sku\": \"MHZVTK2\",\r\n    \"name\": \"Ciki ciki\",\r\n    \"description\": \"Ciki ciki yang super enak, hanya di toko klontong kami\",\r\n    \"weight\": 500,\r\n    \"width\": 5,\r\n    \"length\": 5,\r\n    \"height\": 5,\r\n    \"image\": \"https://cf.shopee.co.id/file/7cb930d1bd183a435f4fb3e5cc4a896b\",\r\n    \"price\": 30000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:31013/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Product",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method PATCH\r",
+									"pm.test(\"HTTP method is PATCH\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"PATCH\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search data\r",
+									"pm.test(\"Path for search data (/product)\", function () {\r",
+									"    pm.expect(pm.request.url.path[2]).to.equal(\"product\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter is product id\r",
+									"pm.test(\"Parameter product id is number and above 0\", function () {\r",
+									"    const id = pm.request.url ? pm.request.url.path[3] : \"empty\"\r",
+									"    pm.expect(Number(id)).to.be.above(0);\r",
+									"    pm.expect(Number(id)).to.be.a('number');\r",
+									"    pm.expect(id).not.to.equal(\"empty\");\r",
+									"    pm.expect(id).not.to.equal(undefined);\r",
+									"    pm.expect(id).not.to.equal(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"CategoryId\": 15,\r\n  \"categoryName\": \"Cemilan\",\r\n  \"sku\": \"MHZVTK\",\r\n  \"name\": \"Ciki ciki\",\r\n  \"description\": \"Ciki ciki yang super enak, hanya di toko klontong kami\",\r\n  \"weight\": 500,\r\n  \"width\": 5,\r\n  \"length\": 5,\r\n  \"height\": 5,\r\n  \"image\": \"https://cf.shopee.co.id/file/7cb930d1bd183a435f4fb3e5cc4a896b\",\r\n  \"price\": 30000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:31013/api/v1/product/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Image",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "files",
+									"type": "file",
+									"src": "/C:/Users/DRC/Downloads/test.txt"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:31013/api/v1/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Checkout",
+			"item": [
+				{
+					"name": "Limit Checkout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method GET\r",
+									"pm.test(\"HTTP method is GET\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"GET\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search all data\r",
+									"pm.test(\"Path for search all data (/checkout)\", function () {\r",
+									"    pm.expect(pm.request.url.path.join().replace(/,/g, \"/\")).to.equal(\"api/v1/checkout\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"// Check path for search data with range\r",
+									"pm.test(\"Query for search data not empty\", function () {\r",
+									"    var query = pm.request.url.query == 0 ? \"empty\" : pm.request.url.query.toString();\r",
+									"    pm.expect(query).not.to.equal(\"empty\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is userRsn\r",
+									"pm.test(\"Query userRsn at parameter is exist\", function () {\r",
+									"    pm.expect(pm.request.url.query.toObject(true)).haveOwnProperty(\"userRsn\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is page\r",
+									"pm.test(\"Query page at parameter is exist\", function () {\r",
+									"    pm.expect(pm.request.url.query.toObject(true)).haveOwnProperty(\"page\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is limit\r",
+									"pm.test(\"Query limit at parameter is exist\", function () {\r",
+									"    pm.expect(pm.request.url.query.toObject(true)).haveOwnProperty(\"limit\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is page\r",
+									"pm.test(\"Query page at parameter is number and above 0\", function () {\r",
+									"    const page = pm.request.url ? pm.request.url.query.toObject(true).page : \"empty\"\r",
+									"    pm.expect(Number(page)).to.be.above(0);\r",
+									"    pm.expect(Number(page)).to.be.a('number');\r",
+									"    pm.expect(page).not.to.equal(\"empty\");\r",
+									"    pm.expect(page).not.to.equal(undefined);\r",
+									"    pm.expect(page).not.to.equal(\"\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter with query param is limit\r",
+									"pm.test(\"Query limit at parameter is number and above 0\", function () {\r",
+									"    const limit = pm.request.url ? pm.request.url.query.toObject(true).limit : \"empty\"\r",
+									"    pm.expect(Number(limit)).to.be.above(0);\r",
+									"    pm.expect(Number(limit)).to.be.a('number');\r",
+									"    pm.expect(limit).not.to.equal(\"empty\");\r",
+									"    pm.expect(limit).not.to.equal(undefined);\r",
+									"    pm.expect(limit).not.to.equal(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31013/api/v1/checkout?page=1&limit=10&userRsn=0a63944a-9022-4661-8209-9fcc6cd797d9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"checkout"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "userRsn",
+									"value": "0a63944a-9022-4661-8209-9fcc6cd797d9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Checkout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method POST\r",
+									"pm.test(\"HTTP method is POST\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"POST\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search data\r",
+									"pm.test(\"Path for search data (/checkout)\", function () {\r",
+									"    pm.expect(pm.request.url.path[2]).to.equal(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// Check body data not empty and must exist\r",
+									"pm.test(\"Body data is a must\", function () {\r",
+									"\tconst body = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(body).not.to.equal(\"empty\");\r",
+									"    pm.expect(body).not.to.equal(undefined);\r",
+									"    pm.expect(body).not.to.equal(\"\");\r",
+									"});\r",
+									"\r",
+									"// Check product name key at the body\r",
+									"pm.test(\"Product name key at the body is a must\", function () {\r",
+									"\tconst title = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(title).haveOwnProperty(\"productName\");\r",
+									"});\r",
+									"\r",
+									"// Check product name value at the body\r",
+									"pm.test(\"Product name at the body not empty and must a string type\", function () {\r",
+									"\tconst title = pm.request.body ? JSON.parse(pm.request.body.raw).productName : \"empty\";\r",
+									"    pm.expect(title).not.to.equal(\"empty\");\r",
+									"    pm.expect(title).not.to.equal(undefined);\r",
+									"    pm.expect(title).not.to.equal(\"\");\r",
+									"    pm.expect(title).to.be.a('string');\r",
+									" });\r",
+									"\r",
+									"// Check price key at the body\r",
+									"pm.test(\"Price key at the body is a must\", function () {\r",
+									"\tconst stock = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(stock).haveOwnProperty(\"price\");\r",
+									"});\r",
+									"\r",
+									"// Check price value at the body\r",
+									"pm.test(\"Price at the body not empty and must a number type\", function () {\r",
+									"\tconst stock = pm.request.body ? JSON.parse(pm.request.body.raw).price : \"empty\";\r",
+									"    pm.expect(stock).not.to.equal(\"empty\");\r",
+									"    pm.expect(stock).not.to.equal(undefined);\r",
+									"    pm.expect(stock).not.to.equal(\"\");\r",
+									"    pm.expect(stock).to.be.a('number');\r",
+									" });\r",
+									"\r",
+									"// Check quantity key at the body\r",
+									"pm.test(\"Quantity key at the body is a must\", function () {\r",
+									"\tconst stock = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(stock).haveOwnProperty(\"quantity\");\r",
+									"});\r",
+									"\r",
+									"// Check quantity value at the body\r",
+									"pm.test(\"Quantity at the body not empty and must a number type\", function () {\r",
+									"\tconst stock = pm.request.body ? JSON.parse(pm.request.body.raw).quantity : \"empty\";\r",
+									"    pm.expect(stock).not.to.equal(\"empty\");\r",
+									"    pm.expect(stock).not.to.equal(undefined);\r",
+									"    pm.expect(stock).not.to.equal(\"\");\r",
+									"    pm.expect(stock).to.be.a('number');\r",
+									" });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userRsn\": \"0a63944a-9022-4661-8209-9fcc6cd797d9\",\r\n    \"productId\": 136,\r\n    \"categoryName\": \"Cemilan\",\r\n    \"productName\": \"Ciki ciki\",\r\n    \"price\": 30000,\r\n    \"quantity\": 2,\r\n    \"sum\": 60000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:31013/api/v1/checkout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"checkout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Checkout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method DELETE\r",
+									"pm.test(\"HTTP method is DELETE\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"DELETE\");\r",
+									"});\r",
+									"\r",
+									"// Check path for delete checkout\r",
+									"pm.test(\"Path for delete checkout (/checkout)\", function () {\r",
+									"    pm.expect(pm.request.url.path[2]).to.equal(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter is checkout id\r",
+									"pm.test(\"Parameter checkout id is number and above 0\", function () {\r",
+									"    const id = pm.request.url ? pm.request.url.path[3] : \"empty\"\r",
+									"    pm.expect(Number(id)).to.be.above(0);\r",
+									"    pm.expect(Number(id)).to.be.a('number');\r",
+									"    pm.expect(id).not.to.equal(\"empty\");\r",
+									"    pm.expect(id).not.to.equal(undefined);\r",
+									"    pm.expect(id).not.to.equal(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:31013/api/v1/checkout/9",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Checkout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method PATCH\r",
+									"pm.test(\"HTTP method is PATCH\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"PATCH\");\r",
+									"});\r",
+									"\r",
+									"// Check path for search data\r",
+									"pm.test(\"Path for search data (/checkout)\", function () {\r",
+									"    pm.expect(pm.request.url.path[2]).to.equal(\"checkout\");\r",
+									"});\r",
+									"\r",
+									"// Check parameter is checkout id\r",
+									"pm.test(\"Parameter checkout id is number and above 0\", function () {\r",
+									"    const id = pm.request.url ? pm.request.url.path[3] : \"empty\"\r",
+									"    pm.expect(Number(id)).to.be.above(0);\r",
+									"    pm.expect(Number(id)).to.be.a('number');\r",
+									"    pm.expect(id).not.to.equal(\"empty\");\r",
+									"    pm.expect(id).not.to.equal(undefined);\r",
+									"    pm.expect(id).not.to.equal(\"\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"categoryName\": \"Cemilan Enak\",\r\n    \"productName\": \"Ciki Ciki\",\r\n    \"price\": 30000,\r\n    \"quantity\": 2,\r\n    \"total\": 60000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:31013/api/v1/checkout/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"checkout",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Midtrans Payment",
+			"item": [
+				{
+					"name": "Create Transaction",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Html status code\r",
+									"pm.test(`HTML status code -> ${pm.response.code} ${pm.response.status}`, function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 400, 401, 403, 404, 500, 503]);\r",
+									"});\r",
+									"\r",
+									"// Check http method POST\r",
+									"pm.test(\"HTTP method is POST\", function () {\r",
+									"    pm.expect(pm.request.method).to.equal(\"POST\");\r",
+									"});\r",
+									"\r",
+									"// Check path for create transaction\r",
+									"pm.test(\"Path for search data (/transaction)\", function () {\r",
+									"    pm.expect(pm.request.url.path[2]).to.equal(\"transaction\");\r",
+									"});\r",
+									"\r",
+									"// Check body data not empty and must exist\r",
+									"pm.test(\"Body data is a must\", function () {\r",
+									"\tconst body = pm.request.body ? JSON.parse(pm.request.body.raw) : \"empty\";\r",
+									"    pm.expect(body).not.to.equal(\"empty\");\r",
+									"    pm.expect(body).not.to.equal(undefined);\r",
+									"    pm.expect(body).not.to.equal(\"\");\r",
+									"});\r",
+									"\r",
+									"// Check order_id key at the body\r",
+									"pm.test(\"order_id key at the body is a must\", function () {\r",
+									"\tconst title = pm.request.body ? JSON.parse(pm.request.body.raw).transaction_details : \"empty\";\r",
+									"    pm.expect(title).haveOwnProperty(\"order_id\");\r",
+									"});\r",
+									"\r",
+									"// Check order_id value at the body\r",
+									"pm.test(\"order_id at the body not empty and must a string type\", function () {\r",
+									"\tconst title = pm.request.body ? JSON.parse(pm.request.body.raw).transaction_details.order_id : \"empty\";\r",
+									"    pm.expect(title).not.to.equal(\"empty\");\r",
+									"    pm.expect(title).not.to.equal(undefined);\r",
+									"    pm.expect(title).not.to.equal(\"\");\r",
+									"    pm.expect(title).to.be.a('string');\r",
+									" });\r",
+									"\r",
+									"// Check gross_amount key at the body\r",
+									"pm.test(\"gross_amount key at the body is a must\", function () {\r",
+									"\tconst stock = pm.request.body ? JSON.parse(pm.request.body.raw).transaction_details : \"empty\";\r",
+									"    pm.expect(stock).haveOwnProperty(\"gross_amount\");\r",
+									"});\r",
+									"\r",
+									"// Check gross_amount value at the body\r",
+									"pm.test(\"gross_amount at the body not empty and must a number type\", function () {\r",
+									"\tconst stock = pm.request.body ? JSON.parse(pm.request.body.raw).transaction_details.gross_amount : \"empty\";\r",
+									"    pm.expect(stock).not.to.equal(\"empty\");\r",
+									"    pm.expect(stock).not.to.equal(undefined);\r",
+									"    pm.expect(stock).not.to.equal(\"\");\r",
+									"    pm.expect(stock).to.be.a('number');\r",
+									" });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-functions-key",
+								"value": "{{azure code prod}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"transaction_details\": {\r\n        \"order_id\": \"{{$randomUUID}}\",\r\n        \"gross_amount\": 60000\r\n    },\r\n    \"credit_card\": {\r\n        \"secure\": true\r\n    },\r\n    \"item_details\": [\r\n        {\r\n            \"id\": \"ORDER-{{$timestamp}}\",\r\n            \"price\": 30000,\r\n            \"quantity\": 2,\r\n            \"name\": \"Ciki Ciki\"\r\n        }\r\n    ],\r\n    \"customer_details\": {\r\n        \"first_name\": \"Ignat\",\r\n        \"last_name\": \"Deswanto\",\r\n        \"email\": \"aignatd@gmail.com\",\r\n        \"phone\": \"+6282228999383\",\r\n        \"billing_address\": {\r\n            \"address\": \"Permata Depok Nilam F5a No. 5\",\r\n            \"city\": \"Depok\",\r\n            \"postal_code\": \"16438\",\r\n            \"country_code\": \"IDN\"\r\n        }\r\n    }\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:31013/api/v1/transaction",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "31013",
+							"path": [
+								"api",
+								"v1",
+								"transaction"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

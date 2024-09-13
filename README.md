@@ -17,11 +17,13 @@ C. API checkout
 D. API payment
 	 1. Semua API payment dapat dilihat menggunakan postman di bagian Midtrans Payment
 	 2. API Payment tersebut adalah create transaction
+	 3. Untuk demo cara bayar bisa menggunakan redirect_url hasil dari response API Payment tersebut (langkah 2)
 
 E. Postgres function
 	 1. Audit logs untuk proses delete dan update table dilakukan di sisi database postgres menggunakan trigger
-	 2. Buat function agar trigger bisa digunakan. Function yang digunakan yaitu deleterow() dan updaterow()
-	 3. Untuk contoh trigger function bisa dilihat didalam file deleterow dan updaterow
+	 2. Buat function agar trigger bisa digunakan. Function yang digunakan yaitu deleterow dan updaterow
+	 3. Untuk contoh trigger function product bisa dilihat didalam file product_delete dan product_update
+	 4. Untuk contoh trigger function checkout bisa dilihat didalam file checkout_delete dan checkout_update
 
 F. Unit test
 	 1. Unit test tersedia didalam source code atau repository didalam folder test

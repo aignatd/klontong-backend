@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION "public"."checkout_delete"()
+  RETURNS "pg_catalog"."trigger" AS $BODY$
+BEGIN
+  INSERT INTO checkout_delete("id", "productId", "userRsn", "categoryName", "productName", "price", "quantity", "sum") VALUES(OLD."id", OLD."productId", OLD."userRsn", OLD."categoryName", OLD."productName", OLD."price", OLD."quantity", OLD."sum");
+  
+  RETURN OLD;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 10

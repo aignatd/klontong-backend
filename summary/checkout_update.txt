@@ -1,0 +1,10 @@
+CREATE OR REPLACE FUNCTION "public"."checkout_update"()
+  RETURNS "pg_catalog"."trigger" AS $BODY$
+BEGIN
+  INSERT INTO checkout_update("id", "productId", "userRsn", "categoryName", "productName", "quantity", "sum", "price") VALUES(OLD."id", OLD."productId", OLD."userRsn", OLD."categoryName", OLD."productName", OLD."quantity", OLD."sum", OLD."price");
+  
+  RETURN OLD;
+END;
+$BODY$
+  LANGUAGE plpgsql VOLATILE
+  COST 10
